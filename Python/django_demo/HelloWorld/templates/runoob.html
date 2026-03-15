@@ -1,0 +1,89 @@
+{% load my_tags %}
+{% load static %}
+{# 引入bootstrap #}
+<!--<link rel="stylesheet" href="/static/plugins/bootstrap-3.3.7/dist/css/bootstrap.css">-->
+
+## 变量渲染
+<p>{{ name }}</p>
+## 列表可以通过. 索引下标取出对应的元素
+<p>{{ view_list }}</p>  # 取出整个列表
+<p>{{ view_list.0 }}</p>  # 取出列表的第一个元素
+
+## 字典可以通过.键 取出对应的值
+<p>{{ views_dict }}</p>
+<p>{{ views_dict.name }}</p>
+
+<p>{{ views_dict | lower | first | upper}}</p>
+
+## 通过变量的布尔值。判断是否使用默认值
+<p>{{ name|default:"这是个默认值" }}</p>
+
+## 过滤 安全参数
+<br>
+{{ views_str|safe }}
+
+## if-else
+{%if num > 90 and num <= 100%}
+<p>优秀</p>
+{%elif num > 60 and num <= 90 %}
+<p>合格</p>
+{% else %}
+<p>劣等</p>
+{% endif %}
+
+## for 迭代
+{% for i in views_list %}
+ <p>{{ i }}</p>
+{% endfor %}
+
+<br>
+## 反向迭代
+{% for i in views_list reversed %}
+<p>{{ i }}</p>
+{% endfor %}
+
+<br>
+## 遍历字典
+{% for i,j in views_dict.items %}
+<p>{{i}}---{{j}}</p>
+{% endfor %}
+<br>
+## 获取循环序号
+{% for i in views_list %}
+{{ forloop.counter }}
+<!--{{ forloop.courter0 }}-->
+<!--{{ forloop.revcourter }}-->
+<!--{{ forloop.revcourter0 }}-->
+<!--{{ forloop.first }}-->
+<!--{{ forloop.last }}-->
+{% endfor %}
+<br>
+## 空
+{% for i in view_list %}
+{{ forloop.counter0 }}
+{% empty %}
+<p>空空如也</p>
+{% endfor %}
+!
+{#这是一个注释#}
+
+{# `{% include %}` 标签允许在模板中包含其它的模板的内容。#}
+{# {% include "nav.html" %} #}
+
+{# csrf_token #}
+
+## 自定义标签和过滤器
+<p>自定义过滤器</p>
+{{ 11|my_filter:22 }}
+<p>自定义标签</p>
+{% my_tag1 11 22 33 %}
+
+{% my_html 'zzz' 'xxx' %}
+
+### 加载图片
+<br>
+{{img_name}}
+<span>
+ <img src = "{% static 'images/white.jpg' %}" alt="img" >
+</span>
+
