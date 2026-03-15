@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--注册bean-->
+    <bean id="userService" class="com.sbi.UserServiceImpl"/>
+    <bean id="beforeLog" class="com.sbi.BeforeLog"/>
+    <bean id="afterLog" class="com.sbi.AfterLog"/>
+
+    <bean id="diy" class="asia.huiyi.DiyPointcut"/>
+
+    <bean id="annotationPointcut" class="huiyi.asia.AnnotationPointcut"/>
+
+    <!--aop的配置-->
+    <aop:config>
+        <!--切入点 expression:表达式匹配要执行的方法-->
+        <aop:pointcut id="pointcut" expression="execution(* com.sbi.UserServiceImpl.*(..))"/>
+
+        <!--执行环绕; advice-ref执行方法 . pointcut-ref切入点-->
+        <aop:advisor advice-ref="beforeLog" pointcut-ref="pointcut"/>
+        <aop:advisor advice-ref="afterLog" pointcut-ref="pointcut"/>
+
+        <!--第二种：使用AOP标签实现-->
+        <aop:aspect ref="diy">
+            <aop:pointcut id="diyPonitcut" expression="execution(* com.sbi.UserServiceImpl.*(..))"/>
+            <aop:before pointcut-ref="diyPonitcut" method="before"/>
+            <aop:after pointcut-ref="diyPonitcut" method="after"/>
+        </aop:aspect>
+
+
+        <!--第三种：注解实现-->
+<!--通过aop命名空间的<aop:aspectj-autoproxy />声明自动为spring容器中那些配置@aspectJ切面的bean创建代理，织入切面。当然，spring 在内部依旧采用AnnotationAwareAspectJAutoProxyCreator进行自动代理的创建工作，但具体实现的细节已经被<aop:aspectj-autoproxy />隐藏起来了
+
+<aop:aspectj-autoproxy />有一个proxy-target-class属性，默认为false，表示使用jdk动态代理织入增强，当配为<aop:aspectj-autoproxy  poxy-target-class="true"/>时，表示使用CGLib动态代理技术织入增强。不过即使proxy-target-class设置为false，如果目标类没有声明接口，则spring将自动使用CGLib动态代理。
+-->
+<!--        <aop:aspectj-autoproxy/>-->
+    </aop:config>
+
+</beans>

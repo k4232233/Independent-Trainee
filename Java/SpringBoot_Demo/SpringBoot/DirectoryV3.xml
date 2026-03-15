@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+ <trees>
+     <tree path="/course1" title="创建第一个SpringBoot"/>
+    <tree path="/course4" title="常用MVC注释"/>
+     <tree path="/course5" title="集成Swagger"/>
+     <tree path="/course6" title="集成Thymeleaf模板引擎"/>
+     <tree path="/course7" title="全局异常处理"/>
+     <tree path="/course3" title="slf4j日志"/>
+     <tree path="/course2" title="Json数据返回、封装"/>
+     <tree path="/course8" title="Aop"/>
+     <tree path="/course7/src/main/java/com/sbi/BusinessMsgEnum.java" title="自定义异常枚举类"/>
+     <tree path="/course9" title="mabatis(h2数据库)"/>
+     <tree path="/course10" title="事务配置管理"/>
+    <tree path="/course11" title="监听器"/>
+    <tree path="/course12" title="拦截器"/>
+    <tree path="/course13" title="redis"/>
+    <tree path="/course14" title="ActiveMQ"/>
+    <tree path="/course15" title="Lucence"/>
+    <tree path="/course16" title="Shiro"/>
+</trees>

@@ -1,0 +1,12 @@
+spring:
+  activemq:
+    # activemq url
+    broker-url: tcp://localhost:61616
+    in-memory: true
+    pool:
+      # 如果此处设置为true，需要添加activemq-pool的依赖包，否则会自动配置失败，无法注入JmsMessagingTemplate
+      enabled: false
+#  jms:
+#    #启用订阅消息(默认是点对点)
+#    #此时点对点失效
+#    pub-sub-domain: true

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    无参构造-->
+    <bean id="user" class="com.sbi.User">
+        <property name="name" value="绘衣"/>
+    </bean>
+<!--有参构造  1，根据index参数下表设置 -->
+    <alias name="userT" alias="uu"/>
+    <bean id = "userT" class="com.sbi.UserT">
+<!--index指构造方法，下标从0开始-->
+        <constructor-arg index="0" value="huiyi_0"/>
+    </bean>
+<!--    1，根据参数名字设置-->
+    <bean id = "userT1" class="com.sbi.UserT">
+<!--        name指参数名-->
+        <constructor-arg name="name" value="huiyi_1"/>
+    </bean>
+<!--    3，根据参数类型设置-->
+    <bean id = "userT2" class="com.sbi.UserT">
+        <constructor-arg type="java.lang.String" value="huiyi_2"/>
+    </bean>
+</beans>
